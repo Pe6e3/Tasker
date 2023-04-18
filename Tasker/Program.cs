@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Tasker.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<TaskerContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("TaskerContext") ?? throw new InvalidOperationException("Connection string 'TaskerContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

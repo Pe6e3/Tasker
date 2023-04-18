@@ -9,5 +9,5 @@ public class Category
 
     [Display(Name = "Категория задачи")]
     public string? CategoryName { get; set; }
-    public List<Task>?  Tasks { get; set; }
+    public List<Taskk>?  Tasks { get; set; }
 }

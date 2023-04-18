@@ -25,7 +25,7 @@ public class User
     [DataType(DataType.Password)]
     public string? Password { get; set; } 
     public int UserRoleId { get; set; }
-    public List<Task>? Tasks { get; set; }
+    public List<Taskk>? Tasks { get; set; }
 
     public User()
     {

@@ -10,5 +10,5 @@ public class Status
 
     [Display(Name = "Статус задачи")]
     public string? StatusName { get; set; }
-    public List<Task>? Tasks { get; set; }
+    public List<Taskk>? Tasks { get; set; }
 }

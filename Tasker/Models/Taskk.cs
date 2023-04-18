@@ -2,7 +2,7 @@
 
 namespace Tasker.Models;
 
-public class Task
+public class Taskk
 {
     [Key]
     public int TaskId { get; set; }

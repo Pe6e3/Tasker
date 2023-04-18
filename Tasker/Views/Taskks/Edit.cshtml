@@ -1,0 +1,74 @@
+﻿@model Tasker.Models.Taskk
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Taskk</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="TaskId" />
+            <div class="form-group">
+                <label asp-for="ParentTaskId" class="control-label"></label>
+                <input asp-for="ParentTaskId" class="form-control" />
+                <span asp-validation-for="ParentTaskId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaskName" class="control-label"></label>
+                <input asp-for="TaskName" class="form-control" />
+                <span asp-validation-for="TaskName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaskDesc" class="control-label"></label>
+                <input asp-for="TaskDesc" class="form-control" />
+                <span asp-validation-for="TaskDesc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DoerUserId" class="control-label"></label>
+                <input asp-for="DoerUserId" class="form-control" />
+                <span asp-validation-for="DoerUserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaskMasterUserId" class="control-label"></label>
+                <input asp-for="TaskMasterUserId" class="form-control" />
+                <span asp-validation-for="TaskMasterUserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StatusId" class="control-label"></label>
+                <select asp-for="StatusId" class="form-control" asp-items="ViewBag.StatusId"></select>
+                <span asp-validation-for="StatusId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateCreate" class="control-label"></label>
+                <input asp-for="DateCreate" class="form-control" />
+                <span asp-validation-for="DateCreate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeadLine" class="control-label"></label>
+                <input asp-for="DeadLine" class="form-control" />
+                <span asp-validation-for="DeadLine" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaskCost" class="control-label"></label>
+                <input asp-for="TaskCost" class="form-control" />
+                <span asp-validation-for="TaskCost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
