@@ -56,7 +56,7 @@ namespace Tasker.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RoleId,RoleName")] Roles roles)
+        public async Task<IActionResult> Create([Bind("RoleId,RoleName")] Role roles)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +88,7 @@ namespace Tasker.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("RoleId,RoleName")] Roles roles)
+        public async Task<IActionResult> Edit(int id, [Bind("RoleId,RoleName")] Role roles)
         {
             if (id != roles.RoleId)
             {

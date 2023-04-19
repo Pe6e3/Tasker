@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Tasker.Data;
 using Tasker.Models;
@@ -12,30 +7,31 @@ namespace Tasker.Controllers
 {
     public class UsersController : Controller
     {
-        private readonly TaskerContext _context;
+        private readonly TaskerContext _db;
 
         public UsersController(TaskerContext context)
         {
-            _context = context;
+            _db = context;
         }
 
         // GET: Users
         public async Task<IActionResult> Index()
         {
-              return _context.User != null ? 
-                          View(await _context.User.ToListAsync()) :
-                          Problem("Entity set 'TaskerContext.User'  is null.");
+           var userContext =  _db.User
+                .Include(p=>p.Role);
+
+            return View(await userContext.ToListAsync());
         }
 
         // GET: Users/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.User == null)
+            if (id == null || _db.User == null)
             {
                 return NotFound();
             }
 
-            var user = await _context.User
+            var user = await _db.User
                 .FirstOrDefaultAsync(m => m.UserId == id);
             if (user == null)
             {
@@ -56,12 +52,16 @@ namespace Tasker.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserId,UserName,Gender,AvatarPath,Login,Password,UserRoleId")] User user)
+        public async Task<IActionResult> Create([Bind("UserId,UserName,Gender,AvatarPath,Login,Password,RoleId")] User user)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(user);
-                await _context.SaveChangesAsync();
+                if (user.AvatarPath == null && user.Gender == "М") user.AvatarPath = "/image/AvatarM.jpg";
+                if (user.AvatarPath == null && user.Gender == "Ж") user.AvatarPath = "/image/AvatarF.jpg";
+
+                Role role = _db.Roles.Where(r => r.RoleId == user.RoleId).FirstOrDefault();
+                _db.Add(user);
+                await _db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(user);
@@ -70,12 +70,12 @@ namespace Tasker.Controllers
         // GET: Users/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.User == null)
+            if (id == null || _db.User == null)
             {
                 return NotFound();
             }
 
-            var user = await _context.User.FindAsync(id);
+            var user = await _db.User.FindAsync(id);
             if (user == null)
             {
                 return NotFound();
@@ -88,7 +88,7 @@ namespace Tasker.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UserId,UserName,Gender,AvatarPath,Login,Password,UserRoleId")] User user)
+        public async Task<IActionResult> Edit(int id, [Bind("UserId,UserName,Gender,AvatarPath,Login,Password,RoleId")] User user)
         {
             if (id != user.UserId)
             {
@@ -99,8 +99,8 @@ namespace Tasker.Controllers
             {
                 try
                 {
-                    _context.Update(user);
-                    await _context.SaveChangesAsync();
+                    _db.Update(user);
+                    await _db.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -121,12 +121,12 @@ namespace Tasker.Controllers
         // GET: Users/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.User == null)
+            if (id == null || _db.User == null)
             {
                 return NotFound();
             }
 
-            var user = await _context.User
+            var user = await _db.User
                 .FirstOrDefaultAsync(m => m.UserId == id);
             if (user == null)
             {
@@ -141,23 +141,23 @@ namespace Tasker.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.User == null)
+            if (_db.User == null)
             {
                 return Problem("Entity set 'TaskerContext.User'  is null.");
             }
-            var user = await _context.User.FindAsync(id);
+            var user = await _db.User.FindAsync(id);
             if (user != null)
             {
-                _context.User.Remove(user);
+                _db.User.Remove(user);
             }
-            
-            await _context.SaveChangesAsync();
+
+            await _db.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool UserExists(int id)
         {
-          return (_context.User?.Any(e => e.UserId == id)).GetValueOrDefault();
+            return (_db.User?.Any(e => e.UserId == id)).GetValueOrDefault();
         }
     }
 }

@@ -20,3 +20,13 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.avatar{
+    height:150px;
+    width:auto;
+}
+
+th, tr{
+    text-align:center;
+    vertical-align: middle;
+}

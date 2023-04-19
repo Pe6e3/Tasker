@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tasker.Data;
 
@@ -11,9 +12,11 @@ using Tasker.Data;
 namespace Tasker.Migrations
 {
     [DbContext(typeof(TaskerContext))]
-    partial class TaskerContextModelSnapshot : ModelSnapshot
+    [Migration("20230419061414_Добавил ForeignKey к UserRoleID и изменил его имя на RoleId")]
+    partial class ДобавилForeignKeyкUserRoleIDиизменилегоимянаRoleId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

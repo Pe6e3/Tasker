@@ -61,7 +61,7 @@ namespace Tasker.Migrations
                     AvatarPath = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Login = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserRoleId = table.Column<int>(type: "int", nullable: false),
+                    RoleId = table.Column<int>(type: "int", nullable: false),
                     RolesRoleId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>

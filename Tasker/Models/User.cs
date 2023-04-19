@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Tasker.Models;
 
@@ -23,14 +24,13 @@ public class User
     [Required]
     [Display(Name = "Пароль")]
     [DataType(DataType.Password)]
-    public string? Password { get; set; } 
-    public int UserRoleId { get; set; }
+    public string? Password { get; set; }
+
+    [Display(Name = "Роль")]
+    [ForeignKey("RoleId")]
+    public int RoleId { get; set; }
     public List<Taskk>? Tasks { get; set; }
 
-    public User()
-    {
-        Password = "12345";
-        UserRoleId = 2; //2 - User
-        AvatarPath = "/image/AvatarM.jpg";
-    }
+    public virtual Role? Role { get; set; }
+    public virtual Category? Category { get; set; }
 }

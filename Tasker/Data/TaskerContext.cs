@@ -16,7 +16,7 @@ namespace Tasker.Data
 
         public DbSet<Tasker.Models.Category> Category { get; set; } = default!;
 
-        public DbSet<Tasker.Models.Roles> Roles { get; set; } = default!;
+        public DbSet<Tasker.Models.Role> Roles { get; set; } = default!;
 
         public DbSet<Tasker.Models.Taskk> Task { get; set; } = default!;
 
