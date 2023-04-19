@@ -37,8 +37,8 @@ public class User
     public virtual Category? Category { get; set; }
 
     // задачи, поставленные пользователем
-    public List<Taskk>? MasterTasks { get; set; }
+    public List<Mission>? MasterMissions { get; set; }
 
     // задачи, назначенные пользователю
-    public List<Taskk>? DoerTasks { get; set; }
+    public List<Mission>? DoerMissions { get; set; }
 }

@@ -1,4 +1,4 @@
-﻿@model Tasker.Models.Taskk
+﻿@model Tasker.Models.Mission
 
 @{
     ViewData["Title"] = "Details";
@@ -7,26 +7,26 @@
 <h1>Details</h1>
 
 <div>
-    <h4>Taskk</h4>
+    <h4>Mission</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ParentTaskId)
+            @Html.DisplayNameFor(model => model.ParentMissionId)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ParentTaskId)
+            @Html.DisplayFor(model => model.ParentMissionId)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TaskName)
+            @Html.DisplayNameFor(model => model.MissionName)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TaskName)
+            @Html.DisplayFor(model => model.MissionName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TaskDesc)
+            @Html.DisplayNameFor(model => model.MissionDesc)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TaskDesc)
+            @Html.DisplayFor(model => model.MissionDesc)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.DoerUserId)
@@ -35,10 +35,10 @@
             @Html.DisplayFor(model => model.DoerUserId)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TaskMasterUserId)
+            @Html.DisplayNameFor(model => model.MissionMasterUserId)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TaskMasterUserId)
+            @Html.DisplayFor(model => model.MissionMasterUserId)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Status)
@@ -59,14 +59,14 @@
             @Html.DisplayFor(model => model.DeadLine)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TaskCost)
+            @Html.DisplayNameFor(model => model.MissionCost)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TaskCost)
+            @Html.DisplayFor(model => model.MissionCost)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.TaskId">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model?.MissionId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

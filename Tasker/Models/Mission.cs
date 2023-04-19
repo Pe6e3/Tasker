@@ -3,19 +3,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Tasker.Models
 {
-    public class Taskk
+    public class Mission
     {
         [Key]
-        public int TaskId { get; set; }
+        public int MissionId { get; set; }
 
         [Display(Name = "Родительская задача")]
-        public int ParentTaskId { get; set; }
+        public int ParentMissionId { get; set; }
 
         [Display(Name = "Название задачи")]
-        public string TaskName { get; set; } = string.Empty;
+        public string MissionName { get; set; } = string.Empty;
 
         [Display(Name = "Описание задачи")]
-        public string TaskDesc { get; set; } = string.Empty;
+        public string MissionDesc { get; set; } = string.Empty;
 
         [Display(Name = "Исполнитель")]
         [ForeignKey("UserDoer")]
@@ -24,20 +24,20 @@ namespace Tasker.Models
 
         [Display(Name = "Постановщик")]
         [ForeignKey("UserMaster")]
-        public int TaskMasterUserId { get; set; }
+        public int MissionMasterUserId { get; set; }
         public virtual User UserMaster { get; set; }
 
-        [Display(Name = "Статус задачи")]
         public int StatusId { get; set; }
+        [Display(Name = "Статус задачи")]
         public virtual Status Status { get; set; }
 
-        [Display(Name = "Дата создания задачи")]
+        [Display(Name = "Создана")]
         public DateTime? DateCreate { get; set; }
 
         [Display(Name = "Дедлайн")]
         public DateTime? DeadLine { get; set; }
 
         [Display(Name = "Стоимость задачи в баллах")]
-        public int TaskCost { get; set; }
+        public int MissionCost { get; set; }
     }
 }

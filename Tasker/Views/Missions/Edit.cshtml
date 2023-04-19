@@ -1,4 +1,4 @@
-﻿@model Tasker.Models.Taskk
+﻿@model Tasker.Models.Mission
 
 @{
     ViewData["Title"] = "Edit";
@@ -6,27 +6,27 @@
 
 <h1>Edit</h1>
 
-<h4>Taskk</h4>
+<h4>Mission</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="TaskId" />
+            <input type="hidden" asp-for="MissionId" />
             <div class="form-group">
-                <label asp-for="ParentTaskId" class="control-label"></label>
-                <input asp-for="ParentTaskId" class="form-control" />
-                <span asp-validation-for="ParentTaskId" class="text-danger"></span>
+                <label asp-for="ParentMissionId" class="control-label"></label>
+                <input asp-for="ParentMissionId" class="form-control" />
+                <span asp-validation-for="ParentMissionId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TaskName" class="control-label"></label>
-                <input asp-for="TaskName" class="form-control" />
-                <span asp-validation-for="TaskName" class="text-danger"></span>
+                <label asp-for="MissionName" class="control-label"></label>
+                <input asp-for="MissionName" class="form-control" />
+                <span asp-validation-for="MissionName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TaskDesc" class="control-label"></label>
-                <input asp-for="TaskDesc" class="form-control" />
-                <span asp-validation-for="TaskDesc" class="text-danger"></span>
+                <label asp-for="MissionDesc" class="control-label"></label>
+                <input asp-for="MissionDesc" class="form-control" />
+                <span asp-validation-for="MissionDesc" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="DoerUserId" class="control-label"></label>
@@ -34,9 +34,9 @@
                 <span asp-validation-for="DoerUserId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TaskMasterUserId" class="control-label"></label>
-                <input asp-for="TaskMasterUserId" class="form-control" />
-                <span asp-validation-for="TaskMasterUserId" class="text-danger"></span>
+                <label asp-for="MissionMasterUserId" class="control-label"></label>
+                <input asp-for="MissionMasterUserId" class="form-control" />
+                <span asp-validation-for="MissionMasterUserId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="StatusId" class="control-label"></label>
@@ -54,9 +54,9 @@
                 <span asp-validation-for="DeadLine" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TaskCost" class="control-label"></label>
-                <input asp-for="TaskCost" class="form-control" />
-                <span asp-validation-for="TaskCost" class="text-danger"></span>
+                <label asp-for="MissionCost" class="control-label"></label>
+                <input asp-for="MissionCost" class="form-control" />
+                <span asp-validation-for="MissionCost" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
