@@ -12,30 +12,30 @@ namespace Tasker.Controllers
 {
     public class CategoriesController : Controller
     {
-        private readonly TaskerContext _context;
+        private readonly TaskerContext _db;
 
         public CategoriesController(TaskerContext context)
         {
-            _context = context;
+            _db = context;
         }
 
         // GET: Categories
         public async Task<IActionResult> Index()
         {
-              return _context.Category != null ? 
-                          View(await _context.Category.ToListAsync()) :
+              return _db.Categories != null ? 
+                          View(await _db.Categories.ToListAsync()) :
                           Problem("Entity set 'TaskerContext.Category'  is null.");
         }
 
         // GET: Categories/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Category == null)
+            if (id == null || _db.Categories == null)
             {
                 return NotFound();
             }
 
-            var category = await _context.Category
+            var category = await _db.Categories
                 .FirstOrDefaultAsync(m => m.CategoryId == id);
             if (category == null)
             {
@@ -60,8 +60,8 @@ namespace Tasker.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(category);
-                await _context.SaveChangesAsync();
+                _db.Add(category);
+                await _db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(category);
@@ -70,12 +70,12 @@ namespace Tasker.Controllers
         // GET: Categories/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Category == null)
+            if (id == null || _db.Categories == null)
             {
                 return NotFound();
             }
 
-            var category = await _context.Category.FindAsync(id);
+            var category = await _db.Categories.FindAsync(id);
             if (category == null)
             {
                 return NotFound();
@@ -99,8 +99,8 @@ namespace Tasker.Controllers
             {
                 try
                 {
-                    _context.Update(category);
-                    await _context.SaveChangesAsync();
+                    _db.Update(category);
+                    await _db.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -121,12 +121,12 @@ namespace Tasker.Controllers
         // GET: Categories/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Category == null)
+            if (id == null || _db.Categories == null)
             {
                 return NotFound();
             }
 
-            var category = await _context.Category
+            var category = await _db.Categories
                 .FirstOrDefaultAsync(m => m.CategoryId == id);
             if (category == null)
             {
@@ -141,23 +141,23 @@ namespace Tasker.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Category == null)
+            if (_db.Categories == null)
             {
                 return Problem("Entity set 'TaskerContext.Category'  is null.");
             }
-            var category = await _context.Category.FindAsync(id);
+            var category = await _db.Categories.FindAsync(id);
             if (category != null)
             {
-                _context.Category.Remove(category);
+                _db.Categories.Remove(category);
             }
             
-            await _context.SaveChangesAsync();
+            await _db.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CategoryExists(int id)
         {
-          return (_context.Category?.Any(e => e.CategoryId == id)).GetValueOrDefault();
+          return (_db.Categories?.Any(e => e.CategoryId == id)).GetValueOrDefault();
         }
     }
 }

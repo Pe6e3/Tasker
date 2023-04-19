@@ -12,30 +12,30 @@ namespace Tasker.Controllers
 {
     public class StatusController : Controller
     {
-        private readonly TaskerContext _context;
+        private readonly TaskerContext _db;
 
         public StatusController(TaskerContext context)
         {
-            _context = context;
+            _db = context;
         }
 
         // GET: Status
         public async Task<IActionResult> Index()
         {
-              return _context.Status != null ? 
-                          View(await _context.Status.ToListAsync()) :
+              return _db.Statuses != null ? 
+                          View(await _db.Statuses.ToListAsync()) :
                           Problem("Entity set 'TaskerContext.Status'  is null.");
         }
 
         // GET: Status/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Status == null)
+            if (id == null || _db.Statuses == null)
             {
                 return NotFound();
             }
 
-            var status = await _context.Status
+            var status = await _db.Statuses
                 .FirstOrDefaultAsync(m => m.StatusId == id);
             if (status == null)
             {
@@ -60,8 +60,8 @@ namespace Tasker.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(status);
-                await _context.SaveChangesAsync();
+                _db.Add(status);
+                await _db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(status);
@@ -70,12 +70,12 @@ namespace Tasker.Controllers
         // GET: Status/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Status == null)
+            if (id == null || _db.Statuses == null)
             {
                 return NotFound();
             }
 
-            var status = await _context.Status.FindAsync(id);
+            var status = await _db.Statuses.FindAsync(id);
             if (status == null)
             {
                 return NotFound();
@@ -99,8 +99,8 @@ namespace Tasker.Controllers
             {
                 try
                 {
-                    _context.Update(status);
-                    await _context.SaveChangesAsync();
+                    _db.Update(status);
+                    await _db.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -121,12 +121,12 @@ namespace Tasker.Controllers
         // GET: Status/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Status == null)
+            if (id == null || _db.Statuses == null)
             {
                 return NotFound();
             }
 
-            var status = await _context.Status
+            var status = await _db.Statuses
                 .FirstOrDefaultAsync(m => m.StatusId == id);
             if (status == null)
             {
@@ -141,23 +141,23 @@ namespace Tasker.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Status == null)
+            if (_db.Statuses == null)
             {
                 return Problem("Entity set 'TaskerContext.Status'  is null.");
             }
-            var status = await _context.Status.FindAsync(id);
+            var status = await _db.Statuses.FindAsync(id);
             if (status != null)
             {
-                _context.Status.Remove(status);
+                _db.Statuses.Remove(status);
             }
             
-            await _context.SaveChangesAsync();
+            await _db.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool StatusExists(int id)
         {
-          return (_context.Status?.Any(e => e.StatusId == id)).GetValueOrDefault();
+          return (_db.Statuses?.Any(e => e.StatusId == id)).GetValueOrDefault();
         }
     }
 }

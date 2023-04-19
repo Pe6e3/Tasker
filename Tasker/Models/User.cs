@@ -1,5 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+using Tasker.Models;
+
 
 namespace Tasker.Models;
 
@@ -17,8 +19,6 @@ public class User
     [Display(Name = "Путь к аватару")]
     public string? AvatarPath { get; set; }
 
-
-
     [Required]
     [Display(Name = "Логин")]
     public string? Login { get; set; }
@@ -29,10 +29,16 @@ public class User
     public string? Password { get; set; }
 
     [Display(Name = "Роль")]
-    [ForeignKey("RoleId")]
+    [ForeignKey("Role")]
     public int RoleId { get; set; }
-    public List<Taskk>? Tasks { get; set; }
 
     public virtual Role? Role { get; set; }
+
     public virtual Category? Category { get; set; }
+
+    // задачи, поставленные пользователем
+    public List<Taskk>? MasterTasks { get; set; }
+
+    // задачи, назначенные пользователю
+    public List<Taskk>? DoerTasks { get; set; }
 }

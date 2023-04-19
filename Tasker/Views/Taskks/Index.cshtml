@@ -12,66 +12,30 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ParentTaskId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TaskName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TaskDesc)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DoerUserId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TaskMasterUserId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateCreate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DeadLine)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TaskCost)
-            </th>
-            <th></th>
-        </tr>
+            <th>@Html.DisplayNameFor(model => model.ParentTaskId)</th>
+            <th>@Html.DisplayNameFor(model => model.TaskName)</th>
+            <th>@Html.DisplayNameFor(model => model.TaskDesc)</th>
+            <th>@Html.DisplayNameFor(model => model.DoerUserId)</th>
+            <th>@Html.DisplayNameFor(model => model.TaskMasterUserId)</th>
+            <th>@Html.DisplayNameFor(model => model.Status)</th>
+            <th>@Html.DisplayNameFor(model => model.DateCreate)</th>
+            <th>@Html.DisplayNameFor(model => model.DeadLine)</th>
+            <th>@Html.DisplayNameFor(model => model.TaskCost)</th>
+            <th>Действия с задачей<th>
+       /tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ParentTaskId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TaskName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TaskDesc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DoerUserId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TaskMasterUserId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status.StatusId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateCreate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DeadLine)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TaskCost)
-            </td>
+            <td>@Html.DisplayFor(modelItem => item.ParentTaskId)</td>
+            <td>@Html.DisplayFor(modelItem => item.TaskName)</td>
+            <td>@Html.DisplayFor(modelItem => item.TaskDesc)</td>
+            <td>@Html.DisplayFor(modelItem => item.UserDoer.UserName)</td>
+            <td>@Html.DisplayFor(modelItem => item.UserMaster.UserName)</td>
+            <td>@Html.DisplayFor(modelItem => item.Status.StatusName)</td>
+            <td>@Html.DisplayFor(modelItem => item.DateCreate)</td>
+            <td>@Html.DisplayFor(modelItem => item.DeadLine)</td>
+            <td>@Html.DisplayFor(modelItem => item.TaskCost)</td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.TaskId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.TaskId">Details</a> |
