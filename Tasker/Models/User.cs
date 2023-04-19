@@ -10,7 +10,9 @@ public class User
 
     [Display(Name = "Имя пользователя")]
     public string? UserName { get; set; }
-    public string Gender { get; set; }
+
+    [Display(Name = "Пол")]
+    public string? Gender { get; set; }
 
     [Display(Name = "Путь к аватару")]
     public string? AvatarPath { get; set; }
