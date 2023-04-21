@@ -1,32 +1,207 @@
-html {
-  font-size: 14px;
+@font-face {
+    font-family: "My-Disket";
+    src: url("/fonts/Disket-Mono-Bold.ttf") format("truetype");
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+@font-face {
+    font-family: "My-Cat";
+    src: url("/fonts/CAT-Arena.ttf") format("truetype");
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+@font-face {
+    font-family: "My-Covid";
+    src: url("/fonts/Covid19.ttf") format("truetype");
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+@font-face {
+    font-family: "My-MultiRound";
+    src: url("/fonts/MultiroundPro.otf") format("truetype");
+}
+
+@font-face {
+    font-family: "My-W3";
+    src: url("/fonts/w3-ip.ttf") format("truetype");
 }
 
 body {
-  margin-bottom: 60px;
+    font-family: My-Cat, sans-serif;
+    font-size: 18px;
 }
 
-.avatar{
-    height:150px;
-    width:auto;
+h1, h2, h3, h4, h5 {
+    font-family: My-W3, sans-serif;
+    margin: 20px 10px 20px 10px;
+    text-align: center;
 }
 
-th, tr{
-    text-align:center;
+b {
+    font-family: My-MultiRound, sans-serif;
+}
+
+th {
+    font-family: My-MultiRound, sans-serif;
     vertical-align: middle;
+}
+
+tr {
+    vertical-align: middle;
+    transition: 1s;
+    background-color: #f6f8c8;
+}
+
+    tr:hover:not(.table-header) {
+        transition: 0.2s;
+        transform: scale(1.02);
+        background-color: #f2e1b4;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25);
+    }
+
+.table-header {
+    background-color: #f7e198;
+}
+
+table {
+    max-width: 100%;
+    text-align: center;
+    vertical-align: middle;
+    margin: 0 auto;
+    box-shadow: 0 20px 10px rgba(0, 0, 0, 0.25);
+}
+
+
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    background-color: antiquewhite;
+}
+
+@keyframes shake {
+    20% {
+        transform: rotate(10deg);
+    }
+
+    80% {
+        transform: rotate(-10deg) scale(1.2);
+    }
+}
+
+.icon {
+    height: 35px;
+    width: 35px;
+    background-color: #ccc;
+    animation-play-state: paused;
+    border-radius: 20px;
+    transition: transform 0.6s ease;
+    box-shadow: 0 6px 11px rgba(0, 0, 0, 0.5);
+}
+
+    .icon:hover {
+        transform: scale(1.2);
+        animation: shake 0.3s ease;
+        animation-play-state: running;
+        box-shadow: 0 0 7px #fcff00;
+    }
+
+.iconBig {
+    height: 50px;
+    width: auto;
+    animation-play-state: paused;
+    transition: transform 0.6s ease;
+}
+
+    .iconBig:hover {
+        transform: scale(1.2);
+        animation: shake 0.3s ease;
+        animation-play-state: running;
+        background: radial-gradient(circle at center, #ffff00 4%, rgba(255, 255, 0, 0.8) 60%, rgba(255, 255, 0, 0) 100%);
+        box-shadow: 0 0 20px #fcff00;
+        position: relative;
+    }
+
+.iconMini {
+    height: 25px;
+    width: 25px;
+    background-color: #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    margin:2px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+.logo {
+    transition: 0.5s;
+    border-radius: 20px;
+}
+
+    .logo:hover {
+        transform: scale(1.2);
+        animation: shake 0.3s ease;
+        animation-play-state: running;
+        box-shadow: 0 0 20px #fff200;
+    }
+
+header {
+    margin-bottom: 80px;
+}
+
+.navbar {
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.25);
+    height: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+.nav-link {
+    font-size: calc(10px + 0.5vw);
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+    font-family: My-W3, sans-serif;
+    transition: 0.5s;
+}
+
+    .nav-link:hover {
+        transition: 0.1s;
+        transform: scale(1.1);
+        text-shadow: 0 0 20px #fff200;
+    }
+
+
+
+footer {
+    background-color: #efe0cc;
+    opacity: 90%;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    box-shadow: 0 -1px 20px rgba(0, 0, 0, 0.15);
 }
