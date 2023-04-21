@@ -20,12 +20,24 @@ namespace Tasker.Controllers
 
 
         // GET: Missions
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string status = "All")
         {
-            var taskerContext = _db.Missions
-                .Include(t => t.UserDoer)
-                .Include(t => t.UserMaster)
-                .Include(t => t.Status);
+            ViewBag.Statuses = _db.Statuses;
+            IQueryable<Mission> taskerContext = _db.Missions;
+
+            if (status == "All")
+                taskerContext = _db.Missions
+                    .Include(t => t.UserDoer)
+                    .Include(t => t.UserMaster)
+                    .Include(t => t.Status);
+
+            else
+                taskerContext = _db.Missions
+                     .Include(t => t.UserDoer)
+                     .Include(t => t.UserMaster)
+                     .Include(t => t.Status)
+                     .Where(t => t.Status.StatusName == status);
+
             return View(await taskerContext.ToListAsync());
         }
 
@@ -75,9 +87,9 @@ namespace Tasker.Controllers
             ViewBag.UserMaster = new SelectList(_db.Users, "UserId", "UserName");
             ViewBag.UserDoer = new SelectList(_db.Users, "UserId", "UserName");
 
-                _db.Add(Mission);
-                await _db.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+            _db.Add(Mission);
+            await _db.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
 
             //if (ModelState.IsValid)
             //{
