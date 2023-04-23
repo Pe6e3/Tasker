@@ -15,8 +15,7 @@
             <input type="hidden" asp-for="MissionId" />
             <div class="form-group">
                 <label asp-for="ParentMissionId" class="control-label"></label>
-                <input asp-for="ParentMissionId" class="form-control" />
-                <span asp-validation-for="ParentMissionId" class="text-danger"></span>
+                <select asp-for="ParentMissionId" class="form-control" asp-items="ViewBag.Missions"></select>
             </div>
             <div class="form-group">
                 <label asp-for="MissionName" class="control-label"></label>
@@ -30,23 +29,18 @@
             </div>
             <div class="form-group">
                 <label asp-for="DoerUserId" class="control-label"></label>
-                <input asp-for="DoerUserId" class="form-control" />
-                <span asp-validation-for="DoerUserId" class="text-danger"></span>
+                <select asp-for="DoerUserId" class="form-control" asp-items="ViewBag.UserDoer"></select>
             </div>
             <div class="form-group">
                 <label asp-for="MissionMasterUserId" class="control-label"></label>
-                <input asp-for="MissionMasterUserId" class="form-control" />
-                <span asp-validation-for="MissionMasterUserId" class="text-danger"></span>
+                <select asp-for="MissionMasterUserId" class="form-control" asp-items="ViewBag.UserMaster"></select>
             </div>
             <div class="form-group">
                 <label asp-for="StatusId" class="control-label"></label>
-                <select asp-for="StatusId" class="form-control" asp-items="ViewBag.StatusId"></select>
-                <span asp-validation-for="StatusId" class="text-danger"></span>
+                <select asp-for="StatusId" class="form-control" asp-items="ViewBag.Statuses"></select>
             </div>
             <div class="form-group">
-                <label asp-for="DateCreate" class="control-label"></label>
-                <input asp-for="DateCreate" class="form-control" />
-                <span asp-validation-for="DateCreate" class="text-danger"></span>
+                <input asp-for="DateCreate" type="hidden" value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss")" class="form-control" />
             </div>
             <div class="form-group">
                 <label asp-for="DeadLine" class="control-label"></label>
@@ -72,3 +66,5 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+

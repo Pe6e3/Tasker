@@ -91,66 +91,38 @@ namespace Tasker.Controllers
             await _db.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
 
-            //if (ModelState.IsValid)
-            //{
-            //    _db.Add(Mission);
-            //    await _db.SaveChangesAsync();
-            //    return RedirectToAction(nameof(Index));
-            //}
-            //return View(Mission);
         }
 
         // GET: Missions/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            ViewBag.Statuses = new SelectList(_db.Statuses, "StatusId", "StatusName");
+            ViewBag.Missions = new SelectList(_db.Missions, "MissionId", "MissionName");
+            ViewBag.UserMaster = new SelectList(_db.Users, "UserId", "UserName");
+            ViewBag.UserDoer = new SelectList(_db.Users, "UserId", "UserName");
+
             if (id == null || _db.Missions == null)
-            {
                 return NotFound();
-            }
 
             var Mission = await _db.Missions.FindAsync(id);
-            if (Mission == null)
-            {
-                return NotFound();
-            }
-            ViewData["StatusId"] = new SelectList(_db.Set<Status>(), "StatusId", "StatusId", Mission.StatusId);
             return View(Mission);
         }
 
         // POST: Missions/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("MissionId,ParentMissionId,MissionName,MissionDesc,DoerUserId,MissionMasterUserId,StatusId,DateCreate,DeadLine,MissionCost")] Mission Mission)
         {
-            if (id != Mission.MissionId)
-            {
-                return NotFound();
-            }
+            ViewBag.Statuses = new SelectList(_db.Statuses, "StatusId", "StatusName");
+            ViewBag.Missions = new SelectList(_db.Missions, "MissionId", "MissionName");
+            ViewBag.UserMaster = new SelectList(_db.Users, "UserId", "UserName");
+            ViewBag.UserDoer = new SelectList(_db.Users, "UserId", "UserName");
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _db.Update(Mission);
-                    await _db.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!MissionExists(Mission.MissionId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["StatusId"] = new SelectList(_db.Set<Status>(), "StatusId", "StatusId", Mission.StatusId);
-            return View(Mission);
+            _db.Update(Mission);
+            await _db.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+
+
         }
 
         // GET: Missions/Delete/5
