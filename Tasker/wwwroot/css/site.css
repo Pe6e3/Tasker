@@ -241,7 +241,8 @@ span {
 
     .card p {
         color: black;
-        font-family: CATArena;
+        font-family: Raleway;
+        font-weight:500;
         font-size: 1rem;
         margin-bottom: 20px;
 
@@ -362,3 +363,4 @@ span {
     .task-filter label {
         margin-right: 16px;
     }
+

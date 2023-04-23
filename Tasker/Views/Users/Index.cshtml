@@ -25,18 +25,32 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td><img class="avatar" src="@item.AvatarPath" /></td>
+                <td> 
+                   <img src="@item.AvatarPath" class="ava">
+                </td>
                 <td>@Html.DisplayFor(modelItem => item.UserName)</td>
                 <td>@Html.DisplayFor(modelItem => item.Gender)</td>
                 <td>@Html.DisplayFor(modelItem => item.Login)</td>
                 <td>@Html.DisplayFor(modelItem => item.Password)</td>
                 <td>@Html.DisplayFor(modelItem => item.Role.RoleName)</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.UserId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.UserId">Details</a> |
+                    <a asp-action="Edit" asp-route-id="@item.UserId">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.UserId">Details</a>
                     <a asp-action="Delete" asp-route-id="@item.UserId">Delete</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+<style>
+
+    .ava {
+        height: 100px;
+        width: 100px;
+        border-radius:10px;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25);
+    }
+
+
+</style>

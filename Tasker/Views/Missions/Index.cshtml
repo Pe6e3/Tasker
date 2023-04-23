@@ -8,6 +8,7 @@
 
 
 
+    <span>Всего задач: @Model.Count()</span>
     <div class="task-filter">
         <form method="get">
             <label for="status-select">Фильтр по статусу:</label>
@@ -19,14 +20,12 @@
                 }
 
             </select>
-            <button type="submit">Применить</button>
+            <button class="btn btn-secondary" type="submit">Применить</button>
         </form>
     </div>
 
-    <div class="task-header">
-    </div>
-    <span>Всего задач: @Model.Count()</span>
-    <h2>Все задачи</h2>
+
+
     <div class="card-container">
         @foreach (var item in Model)
         {
