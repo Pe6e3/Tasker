@@ -1,27 +1,3 @@
-@font-face {
-    font-family: "My-Disket";
-    src: url("/fonts/Disket-Mono-Bold.ttf") format("truetype");
-}
-
-@font-face {
-    font-family: "My-Cat";
-    src: url("/fonts/CAT-Arena.ttf") format("truetype");
-}
-
-@font-face {
-    font-family: "My-Covid";
-    src: url("/fonts/Covid19.ttf") format("truetype");
-}
-
-@font-face {
-    font-family: "My-MultiRound";
-    src: url("/fonts/MultiroundPro.otf") format("truetype");
-}
-
-@font-face {
-    font-family: "My-W3";
-    src: url("/fonts/w3-ip.ttf") format("truetype");
-}
 
 body {
     font-family: My-Cat, sans-serif;
@@ -363,4 +339,11 @@ span {
     .task-filter label {
         margin-right: 16px;
     }
+
+.ava {
+    height: 100px;
+    width: 100px;
+    border-radius: 10px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25);
+}
 
