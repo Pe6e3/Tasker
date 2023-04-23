@@ -35,17 +35,7 @@
                 <p>@Html.DisplayFor(modelItem => item.MissionDesc)</p>
                 <div class="card-details">
 
-                    @*ответственный*@
-                    <div class="card-details-item">
-                        <img src="/image/ico/doer.png" class="iconMini" />
-                        <span>@Html.DisplayFor(modelItem => item.UserDoer.UserName)</span>
-                    </div>
 
-                    @*постановщик задачи*@
-                    <div class="card-details-item">
-                        <img src="/image/ico/master.png" class="iconMini" />
-                        <span>@Html.DisplayFor(modelItem => item.UserMaster.UserName)</span>
-                    </div>
 
                     @*Статус*@
                     <div class="card-details-item">
@@ -80,11 +70,23 @@
                     </div>
 
                     @*Стоимость задачи*@
-                    <div class="card-details-item">
+                    <div class="card-details-item d-flex justify-content-center">
                         @for (int i = 0; i < item.MissionCost; i++)
                         {
                             <img src="/image/ico/points.png" class="iconMini" />
                         }
+                    </div>
+
+                    <br />
+
+                    @*Кто поручил*@
+                    <div style="position:absolute; bottom:10px; left:5%;">
+                        <img src="@Html.DisplayFor(modelItem => item.UserMaster.AvatarPath)" class="iconMini" />
+
+                        <span> <b> >> </b>  </span>
+
+                        @*>> Кому поручил*@
+                        <img src="@Html.DisplayFor(modelItem => item.UserDoer.AvatarPath)" class="iconMini" />
                     </div>
 
                 </div>
